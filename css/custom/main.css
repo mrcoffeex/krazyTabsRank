@@ -1,0 +1,80 @@
+/* custom css main */
+
+.brand-logo img{
+    width: 100% !important;
+}
+
+.btn-e4ps {
+    color: #000;
+    background-color: #fbab50;
+    border-color: #fbab50;
+}
+
+.text-e4ps-yellow{
+    color: #fbab50;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .navbar .navbar-brand-wrapper {
+        padding-left: 0.5rem;
+    }
+}
+  
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .navbar .navbar-brand-wrapper {
+        padding-left: 0.5rem;
+    }
+}
+  
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .navbar .navbar-brand-wrapper {
+        padding-left: 0.8rem;
+    }
+}
+  
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .navbar .navbar-brand-wrapper {
+        padding-left: 0.8rem;
+    }
+}
+
+/* Joane Custom CSS*/
+.reg{
+    padding: 0.6rem 1.375rem !important;
+}
+
+.sp_reg{
+    margin-bottom: 0.6rem !important;
+}
+
+/*card hyperlink*/
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0,0,0,0);
+}
+
+/* print */
+@media print{
+    .no-print{
+        display: none !important;
+    }
+
+    #print-page-scale {
+        zoom: 90%;
+    }
+}
