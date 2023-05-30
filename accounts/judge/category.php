@@ -50,12 +50,14 @@
                             $getCriteria=selectCriteria($redirect);
                             while ($criteria=$getCriteria->fetch(PDO::FETCH_ASSOC)) {
                         ?>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-12 mb-3">
                             <div class="card">
                                 <div class="card-body text-center">
+                                    <h3>
                                     <span class="text-bold"><?= $criteria['tabs_cri_title'] ?></span><br>
                                     <?= $criteria['tabs_cri_desc'] ?><br>
                                     Scoring: <span class="text-primary"><?= $criteria['tabs_cri_score_min'] . " - " . $criteria['tabs_cri_score_max'] ?></span>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -65,15 +67,19 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="card-title text-center">
+                                    <h2 class="mb-4">
                                         <span class="text-primary"><?= getCategoryTitle($redirect) ?></span> Category
-                                    </h3>
+                                        <span class="float-end">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showRanks">Show Ranks</button>
+                                        </span>
+                                    </h2>
+                                    <form action="updateRanking?catId=<?= $redirect ?>" method="post" enctype="multipart/form-data" onsubmit="btnLoader(this.generateRank)">
                                     <div class="table-sorter-wrapper col-lg-12 table-responsive">
-                                        <table class="table table-hover table-bordered" id="sortable-table-1">
+                                        <table class="table table-hover table-bordered border-dark" id="sortable-table-1">
                                             <thead>
                                                 <tr class="table-dark">
                                                     <th class="sortStyle text-center"># <i class="ti-angle-down"></i></th>
-                                                    <th class="sortStyle">Candidate <i class="ti-angle-down"></i></th>
+                                                    <th class="sortStyle text-center">Candidate <i class="ti-angle-down"></i></th>
                                                     <?php  
                                                         //get criteria
                                                         $getCriHead=selectCriteria($redirect);
@@ -85,7 +91,7 @@
                                                         <i class="ti-angle-down"></i>
                                                     </th>
                                                     <?php } ?>
-                                                    <th class="sortStyle text-center">Total <i class="ti-angle-down"></i></th>
+                                                    <th class="sortStyle text-center">Rank <i class="ti-angle-down"></i></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,8 +101,12 @@
                                                     while ($candidate=$getCandidates->fetch(PDO::FETCH_ASSOC)) {
                                                 ?>
                                                 <tr>
-                                                    <td class="text-center"><?= $candidate['tabs_can_number'] ?></td>
-                                                    <td><?= $candidate['tabs_can_name'] ?></td>
+                                                    <td class="text-center"><h2><?= $candidate['tabs_can_number'] ?></h2></td>
+                                                    <td class="text-center text-bold">
+                                                        <h3><?= $candidate['tabs_can_name'] ?></h3>
+                                                        <br><br>
+                                                        <img src="<?= previewImage($candidate['tabs_can_image'], '../../images/default_image.jpg', '../../uploads/') ?>" class="" alt="image">
+                                                    </td>
 
                                                     <?php  
                                                         //get criteria
@@ -111,45 +121,36 @@
                                                         <td class="text-center p-0">
                                                             <input 
                                                             type="number" 
-                                                            class="form-control form-control-sm text-center border border-light" 
+                                                            class="form-control text-center border border-light" 
                                                             min="<?= $criRow['tabs_cri_score_min'] ?>" 
                                                             max="<?= $criRow['tabs_cri_score_max'] ?>" 
-                                                            step="1" 
-                                                            id="result_<?= $criRow['tabs_cri_id'] ?>" 
+                                                            step="0.01" 
+                                                            name="result_<?= $candidate['tabs_can_id'] ?>" 
+                                                            id="result_<?= $criRow['tabs_cri_id'] ?>"
                                                             value="<?= getCandidateResultByCriteria($criRow['tabs_cri_id'], $redirect, $candidate['tabs_can_id'], $tabs_user_id) ?>" 
-                                                            onkeyup="updateScore(<?= $candidate['tabs_can_id'] ?>, <?= $criRow['tabs_cri_id'] ?>, this.value)" autofocus>
+                                                            style="line-heigth: 3; font-size: 33px;" 
+                                                            autofocus required>
+
+                                                            <input type="hidden" name="criId_<?= $candidate['tabs_can_id'] ?>" value="<?= $criRow['tabs_cri_id'] ?>" required>
                                                         </td>
 
                                                     <?php } ?>
-                                                    <td class="text-center text-bold"><span id="totalScore_<?= $candidate['tabs_can_id'] ?>"><?= $totalScore ?></span></td>
+                                                    <td class="text-center text-bold"><h2><?= getCandidateRank($candidate['tabs_can_id'], $tabs_event_id, $redirect, $tabs_user_id) ?></h2></td>
                                                     
                                                 </tr>
-
-                                                <script>
-
-                                                    $(document).ready(function () {
-
-                                                        function loadTotalScore_<?= $candidate['tabs_can_id'] ?>() {
-                                                            $.ajax({
-                                                                type: "GET",
-                                                                url: "auto_total_score.php?canId=<?= $candidate['tabs_can_id'] ?>&catId=<?= $redirect ?>",
-                                                                dataType: "html",              
-                                                                success: function (response) {
-                                                                    $("#totalScore_<?= $candidate['tabs_can_id'] ?>").html(response);
-                                                                    setTimeout(loadTotalScore_<?= $candidate['tabs_can_id'] ?>, 1000)
-                                                                }
-                                                            });
-                                                        }
-
-                                                        loadTotalScore_<?= $candidate['tabs_can_id'] ?>();
-                                                    });
-
-                                                </script>
 
                                                 <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
+                                    <div class="row justify-content-center mt-3">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <button type="submit" id="generateRank" class="btn btn-primary btn-lg btn-block">Submit and Generate Rank</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -157,6 +158,57 @@
                 
                 <?php include '_footer.php'; ?>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="showRanks" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel"><i class="ti-bar-chart"></i> Ranking</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-sorter-wrapper col-lg-12 table-responsive">
+                        <table class="table table-hover table-bordered border-dark" id="sortable-table-1">
+                            <thead>
+                                <tr class="table-dark">
+                                    <th class="sortStyle text-center"># <i class="ti-angle-down"></i></th>
+                                    <th class="sortStyle text-center">Candidate <i class="ti-angle-down"></i></th>
+                                    <th class="sortStyle text-center">Rank <i class="ti-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php  
+                                    //populate candidates join to results scores condition with judge id (tabs_user_id)
+                                    $getRanks=dbaselink()->prepare("SELECT * FROM tabs_results
+                                                                    Where 
+                                                                    tabs_cat_id = :tabs_cat_id AND
+                                                                    tabs_event_id = :tabs_event_id AND
+                                                                    tabs_user_id = :tabs_user_id
+                                                                    Order By tabs_result_rank ASC");
+                                    $getRanks->execute([
+                                        'tabs_cat_id' => $redirect,
+                                        'tabs_event_id' => $tabs_event_id,
+                                        'tabs_user_id' => $tabs_user_id
+                                    ]);
+                                    while ($rank=$getRanks->fetch(PDO::FETCH_ASSOC)) {
+                                ?>
+                                <tr>
+                                    <td class="text-center"><?= getCandidateNumber($rank['tabs_can_id']) ?></td>
+                                    <td class="text-center text-bold"><?= getCandidateName($rank['tabs_can_id']) ?></td>
+                                    <td class="text-center text-bold"><?= $rank['tabs_result_rank'] ?></td>
+                                    
+                                </tr>
+
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -225,6 +277,10 @@
                         } else if (data == 4) {
 
                             window.location.href = 'index?note=cat_closed'
+
+                        } else if (data == 5) {
+
+                            toastr.error('Please put minimum input');
 
                         } else {
 

@@ -32,6 +32,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
+                                        <a href="events">
+                                            <button type="button" class="btn btn-dark btn-sm">go back</button>
+                                        </a>
                                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti-plus"></i> Create Category</button>
                                     </div>
                                     <div class="table-responsive">

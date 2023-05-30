@@ -299,6 +299,18 @@
         return $alpha;
     }
 
+    function previewImage($image, $default_image, $directory){
+
+        if ($image == "empty" || $image == "") {
+            $res = $default_image;
+        }else{
+            $res = $directory . "" . $image;
+        }
+
+        return $res;
+
+    }
+
     function ezImageUpload($input, $location){
 
         $errors= array();
@@ -893,13 +905,14 @@
 
     }
 
-    function createCandidate($number, $name, $designation, $eventId){
+    function createCandidate($number, $name, $designation, $image, $eventId){
 
         $statement=dbaselink()->prepare("INSERT INTO tabs_candidates
                                         (
                                             tabs_can_number, 
                                             tabs_can_name, 
                                             tabs_can_desc, 
+                                            tabs_can_image, 
                                             tabs_can_created, 
                                             tabs_event_id
                                         )
@@ -908,6 +921,7 @@
                                             :tabs_can_number, 
                                             :tabs_can_name, 
                                             :tabs_can_desc, 
+                                            :tabs_can_image, 
                                             NOW(), 
                                             :tabs_event_id
                                         )");
@@ -915,6 +929,7 @@
             'tabs_can_number' => $number,
             'tabs_can_name' => $name,
             'tabs_can_desc' => $designation,
+            'tabs_can_image' => $image,
             'tabs_event_id' => $eventId
         ]);
 
@@ -926,13 +941,14 @@
 
     }
 
-    function updateCandidate($number, $name, $designation, $eventId, $canId){
+    function updateCandidate($number, $name, $designation, $image, $eventId, $canId){
 
         $statement=dbaselink()->prepare("UPDATE tabs_candidates 
                                         SET
                                         tabs_can_number = :tabs_can_number, 
                                         tabs_can_name = :tabs_can_name, 
                                         tabs_can_desc = :tabs_can_desc,
+                                        tabs_can_image = :tabs_can_image,
                                         tabs_event_id = :tabs_event_id
                                         Where
                                         tabs_can_id = :tabs_can_id
@@ -941,6 +957,7 @@
             'tabs_can_number' => $number,
             'tabs_can_name' => $name,
             'tabs_can_desc' => $designation,
+            'tabs_can_image' => $image,
             'tabs_event_id' => $eventId,
             'tabs_can_id' => $canId
         ]);
@@ -1020,6 +1037,20 @@
         $res=$statement->fetch(PDO::FETCH_ASSOC);
         
         return $res['tabs_can_name'];
+
+    }
+
+    function getCandidateImage($canId){
+
+        $statement=dbaselink()->prepare("SELECT tabs_can_image From tabs_candidates
+                                        Where
+                                        tabs_can_id = :tabs_can_id");
+        $statement->execute([
+            'tabs_can_id' => $canId
+        ]);
+        $res=$statement->fetch(PDO::FETCH_ASSOC);
+        
+        return $res['tabs_can_image'];
 
     }
 
@@ -1665,6 +1696,20 @@
 
     }
 
+    function getCriteriaMin($criId){
+
+        $statement=dbaselink()->prepare("SELECT tabs_cri_score_min From tabs_criterias
+                                        Where
+                                        tabs_cri_id = :tabs_cri_id");
+        $statement->execute([
+            'tabs_cri_id' => $criId
+        ]);
+        $res=$statement->fetch(PDO::FETCH_ASSOC);
+
+        return $res['tabs_cri_score_min'];
+
+    }
+
     // methods_results
 
     function checkExistingResult($criId, $catId, $canId, $judgeId){
@@ -1804,7 +1849,7 @@
                                         Where 
                                         tabs_cat_id = :tabs_cat_id AND
                                         tabs_event_id = :tabs_event_id 
-                                        Order By tabs_result_score DESC");
+                                        Order By tabs_result_rank ASC");
         $statement->execute([
             'tabs_cat_id' => $catId,
             'tabs_event_id' => $eventId

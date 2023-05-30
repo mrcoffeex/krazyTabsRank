@@ -17,7 +17,7 @@
       
             <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
                 <div class="row flex-grow">
-                    <div class="col-lg-6 mt-5 align-items-center justify-content-center">
+                    <div class="col-lg-6 mt-0 align-items-center justify-content-center grid-margin stretch-card">
                         <div class="auth-form-transparent text-left p-3">
                             <div class="brand-logo">
                                 <img src="images/logo-long.png" alt="logo">
@@ -65,7 +65,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 grid-margin stretch-card bg-secondary">
                         <img src="uploads/<?= $my_event_image ?>" class="img-fluid" alt="event image">
                     </div>
                 </div>

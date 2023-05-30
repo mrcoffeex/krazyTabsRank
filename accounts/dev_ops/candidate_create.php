@@ -9,16 +9,25 @@
         $name = clean_string($_POST['name']);
         $designation = clean_string($_POST['designation']);
 
-        if (checkCandidateNumberIfExist($eventId, $can_number) > 0) {
-            header("location: event_candidates?rand=".my_rand_str(30)."&eventId=$eventId&note=can_duplicate");
-        } else {
-            $insert_data = createCandidate($can_number, $name, $designation, $eventId);
+        $canImage = ezImageUpload("can_image", "../../uploads/");
 
-            if ($insert_data == true) {
-                header("location: event_candidates?rand=".my_rand_str(30)."&eventId=$eventId&note=can_added");
-            }else{
-                header("location: event_candidates?rand=".my_rand_str(30)."&eventId=$eventId&note=error");
+        if ($canImage == "error") {
+            header("location: event_candidates?rand=".my_rand_str(30)."&note=invalid_upload");
+        } else {
+
+            if (checkCandidateNumberIfExist($eventId, $can_number) > 0) {
+                header("location: event_candidates?rand=".my_rand_str(30)."&eventId=$eventId&note=can_duplicate");
+            } else {
+                $insert_data = createCandidate($can_number, $name, $designation, $canImage, $eventId);
+    
+                if ($insert_data == true) {
+                    header("location: event_candidates?rand=".my_rand_str(30)."&eventId=$eventId&note=can_added");
+                }else{
+                    header("location: event_candidates?rand=".my_rand_str(30)."&eventId=$eventId&note=error");
+                }
             }
+
         }
+        
     }
 ?>

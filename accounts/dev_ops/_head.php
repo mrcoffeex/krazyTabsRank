@@ -19,6 +19,7 @@
 
   <link rel="stylesheet" href="../../vendors/select2/select2.min.css">
   <link rel="stylesheet" href="../../vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+  <link rel="stylesheet" href="../../vendors/dropify/dropify.min.css">
 
   <link rel="shortcut icon" href="../../images/logo.png" />
 </head>

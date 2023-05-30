@@ -19,6 +19,14 @@
 
 <?php include '_head.php'; ?>
 
+<style>
+    @media print {
+      .hide-on-print {
+        display: none;
+      }
+    }
+</style>
+
 <body id="print-page-scale">
     <div class="container-scroller">
         
@@ -66,7 +74,8 @@
                                                     <th class="sortStyle p-2 text-center" title="<?= getJudgeName($judges['tabs_user_id']) ?>"><?= limitString(getJudgeName($judges['tabs_user_id']), 10) ?> <i class="ti-angle-down"></th>
                                                     <?php } ?>
                                                     <th class="sortStyle p-2 text-center">Total Rank<i class="ti-angle-down"></th>
-                                                    <th class="sortStyle p-2 text-center">Rank<i class="ti-angle-down"></th>
+                                                    <th class="sortStyle p-2 text-center">Output Rank<i class="ti-angle-down"></th>
+                                                    <th class="sortStyle p-2 text-center hide-on-print">Rank<i class="ti-angle-down"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -93,6 +102,9 @@
                                                     <?php } ?>
                                                     <td class="p-2 text-center"><?= $totalRank ?></td>
                                                     <td class="p-2 text-center">
+                                                        <?= getCandidateCatRank($catList['tabs_can_id'], $eventID, $redirect) ?>
+                                                    </td>
+                                                    <td class="p-2 text-center hide-on-print">
                                                         <input 
                                                         type="number" 
                                                         class="form-control form-control-sm text-center border border-light" 
@@ -179,7 +191,7 @@
                                                         step="1" 
                                                         id="rank_<?= $list['tabs_can_id'] ?>" 
                                                         value="<?= getCandidateRank($list['tabs_can_id'], $eventID, $redirect, $judge['tabs_user_id']) ?>" 
-                                                        onkeyup="updateRank(<?= $list['tabs_can_id'] ?>, <?= $judge['tabs_user_id'] ?>, this.value)" autofocus>
+                                                        onkeyup="updateRank(<?= $list['tabs_can_id'] ?>, <?= $judge['tabs_user_id'] ?>, this.value)" readonly autofocus>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>

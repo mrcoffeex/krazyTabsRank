@@ -8,6 +8,7 @@
     $criId = clean_int($_GET['criId']);
 
     $criMax = getCriteriaMax($criId);
+    $criMin = getCriteriaMin($criId);
 
     $score = clean_float($_GET['score']);
 
@@ -23,6 +24,10 @@
     
                 print(3);
     
+            } else if ($score < $criMin) {
+
+                print(5);
+
             } else {
                 
                 $insert_data = createResult($tabs_event_id, $catId, $criId, $tabs_user_id, $canId, $score);

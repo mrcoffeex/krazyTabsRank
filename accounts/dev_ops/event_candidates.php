@@ -32,6 +32,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
+                                        <a href="events">
+                                            <button type="button" class="btn btn-dark btn-sm">go back</button>
+                                        </a>
                                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-can"><i class="ti-plus"></i> Create Candidate</button>
 
                                         <button 
@@ -50,6 +53,7 @@
                                                     <th>Name</th>
                                                     <th>Designation</th>
                                                     <th>Event</th>
+                                                    <th class="text-center">Image</th>
                                                     <th class="text-center">Edit</th>
                                                     <th class="text-center">Delete</th>
                                                 </tr>
@@ -64,6 +68,15 @@
                                                     <td><?= $candidate['tabs_can_name']; ?></td>
                                                     <td><?= $candidate['tabs_can_desc']; ?></td>
                                                     <td><?= getEventTitle($candidate['tabs_event_id']); ?></td>
+                                                    <td class="text-center">
+                                                        <button 
+                                                            type="button" 
+                                                            class="btn btn-primary btn-sm" 
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-target="#image_<?= $candidate['tabs_can_id']; ?>">
+                                                            <i class="ti-image"></i>
+                                                        </button>
+                                                    </td>
                                                     <td class="text-center">
                                                         <button 
                                                             type="button" 
@@ -125,6 +138,10 @@
                                                                         ?>
                                                                     </select>
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label>Image</label>
+                                                                    <input type="file" class="form-control" name="can_image" >
+                                                                </div>
                                                             </div> 
                                                             <div class="modal-footer">
                                                                 <button type="submit" id="submit_update_can" class="btn btn-info">Update</button>
@@ -162,6 +179,22 @@
                                                             </div>
 
                                                             </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="image_<?= $candidate['tabs_can_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="ModalLabel"><i class="ti-image"></i> <?= $candidate['tabs_can_name'] ?></h5>
+                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <img src="<?= previewImage($candidate['tabs_can_image'], '../../images/default_image.jpg', '../../uploads/') ?>" class="img-table" alt="image">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -205,6 +238,10 @@
                     <div class="form-group">
                         <label>Designation</label>
                         <input type="text" class="form-control" name="designation" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" class="dropify" name="can_image">
                     </div>
                 </div>
                 <div class="modal-footer">

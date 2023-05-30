@@ -8,7 +8,7 @@
         <i class="ti-clipboard"></i> Categories
         <span class="float-end">
             <span class="badge badge-primary">Open Category</span>
-            <span class="badge badge-danger">Close Category</span>
+            <span class="badge badge-danger">Closed Category</span>
         </span>
     </h1>
 </div>

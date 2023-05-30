@@ -57,7 +57,7 @@
                                                         while ($categoryHead=$getCategoryHeaders->fetch(PDO::FETCH_ASSOC)) {
                                                     ?>
                                                     <th class="sortStyle p-2 text-center" title="<?= getCategoryTitle($categoryHead['tabs_cat_id']) ?>">
-                                                        <?= limitString(getCategoryTitle($categoryHead['tabs_cat_id']), 12) ?> <span class="text-primary no-print"><?= getCategoryPercentage($categoryHead['tabs_cat_id'])."%" ?></span> <i class="ti-angle-down"></i> 
+                                                        <?= limitString(getCategoryTitle($categoryHead['tabs_cat_id']), 12) ?> Rank <i class="ti-angle-down"></i> 
                                                     </th>
                                                     <?php } ?>
                                                     <th class="sortStyle p-2 text-center">Total <i class="ti-angle-down"></th>

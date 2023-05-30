@@ -10,7 +10,6 @@
 <html lang="en">
 
 <?php include '_head.php'; ?>
-<link rel="stylesheet" href="../../vendors/dropify/dropify.min.css">
 
 <body>
     <div class="container-scroller">
@@ -72,8 +71,6 @@
     <!-- modals -->
 
     <?php include '_scripts.php'; ?>
-    <script src="../../vendors/dropify/dropify.min.js"></script>
-    <script src="../../js/dropify.js"></script>
     <?php include '_alerts.php'; ?>
 
 </body>

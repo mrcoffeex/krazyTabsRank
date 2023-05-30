@@ -78,3 +78,14 @@
         zoom: 90%;
     }
 }
+
+.btn-block{
+    display: block;
+    width: 100%;
+}
+
+.table td img, .jsgrid .jsgrid-table td img {
+    width: 350px;
+    height: auto;
+    border-radius: 3px;
+}

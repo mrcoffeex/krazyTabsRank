@@ -40,6 +40,12 @@
                 toastr.error('No more candidates');
             </script>
         ";
+    }else if ($note == "submit" && $currpage == "category") {
+        echo "
+            <script>
+                toastr.success('Score Submitted');
+            </script>
+        ";
     }else{
         echo "";
     }

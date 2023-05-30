@@ -3,6 +3,7 @@
 <!-- endinject -->
 <!-- Plugin js for this page -->
 <script src="../../vendors/chart.js/Chart.min.js"></script>
+<script src="../../vendors/dropify/dropify.min.js"></script>
 <!-- End plugin js for this page -->
 <!-- inject:js -->
 <script src="../../js/off-canvas.js"></script>
@@ -25,6 +26,7 @@
 <script src="../../js/jquery.steps.min.js"></script>
 <script src="../../js/jquery.validate.min.js"></script>
 <script src="../../js/wizard.js"></script>
+<script src="../../js/dropify.js"></script>
 <!-- End js for jquery applicants-->
 
 <script src="../../js/select2.js"></script>
