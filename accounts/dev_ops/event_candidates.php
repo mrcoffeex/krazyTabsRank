@@ -193,7 +193,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body text-center">
-                                                                <img src="<?= previewImage($candidate['tabs_can_image'], '../../images/default_image.jpg', '../../uploads/') ?>" class="img-table" alt="image">
+                                                                <img src="<?= previewImage($candidate['tabs_can_image'], '../../images/default_image.jpg', '../../uploads/') ?>" class="img-fluid" alt="image">
                                                             </div>
                                                         </div>
                                                     </div>

@@ -191,7 +191,7 @@
                                                         step="1" 
                                                         id="rank_<?= $list['tabs_can_id'] ?>" 
                                                         value="<?= getCandidateRank($list['tabs_can_id'], $eventID, $redirect, $judge['tabs_user_id']) ?>" 
-                                                        onkeyup="updateRank(<?= $list['tabs_can_id'] ?>, <?= $judge['tabs_user_id'] ?>, this.value)" readonly autofocus>
+                                                        onkeyup="updateRank(<?= $list['tabs_can_id'] ?>, <?= $judge['tabs_user_id'] ?>, this.value)" autofocus>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
