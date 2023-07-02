@@ -1877,6 +1877,28 @@
 
     }
 
+    function getCandidateTotalRanks($eventId, $catId, $canId){
+
+        $statement=dbaselink()->prepare("SELECT 
+                                        SUM(tabs_result_rank) AS total_ranks
+                                        FROM
+                                        tabs_results
+                                        Where
+                                        tabs_event_id = :tabs_event_id AND 
+                                        tabs_cat_id = :tabs_cat_id AND 
+                                        tabs_can_id = :tabs_can_id");
+        $statement->execute([
+            'tabs_event_id' => $eventId,
+            'tabs_cat_id' => $catId,
+            'tabs_can_id' => $canId
+        ]);
+
+        $res=$statement->fetch(PDO::FETCH_ASSOC);
+
+        return $res['total_ranks'];
+
+    }
+
     function getCandidateResultByCategoryAndJudge($catId, $judgeId){
 
         $statement=dbaselink()->prepare("SELECT DISTINCT tabs_can_id, tabs_user_id FROM tabs_results
@@ -1979,6 +2001,112 @@
             return false;
         }
         
+    }
+
+    function updateRankFinal($eventId, $catId, $judgeId){
+
+        $statement=dbaselink()->prepare("SELECT * FROM tabs_results
+                                        Where 
+                                        tabs_cat_id = :tabs_cat_id AND
+                                        tabs_event_id = :tabs_event_id AND
+                                        tabs_user_id = :tabs_user_id
+                                        Order By tabs_result_rank ASC");
+        $statement->execute([
+            'tabs_cat_id' => $catId,
+            'tabs_event_id' => $eventId,
+            'tabs_user_id' => $judgeId
+        ]);
+
+        if ($statement->rowCount() > 0) {
+
+            $scoreCounts = array();
+        
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($rows as $row) {
+
+                $rank = $row["tabs_result_rank"];
+                
+                if (!isset($scoreCounts[$rank])) {
+                    $scoreCounts[$rank] = 1;
+                } else {
+                    $scoreCounts[$rank]++;
+                }
+            }
+        
+            reset($rows);
+            
+            foreach ($rows as $row) {
+
+                $candidateId = $row["tabs_can_id"];
+                
+                $rank = $row["tabs_result_rank"];
+                
+                if ($scoreCounts[$rank] > 1) {
+                    $rank += 0.5;
+                }
+                
+                // update here
+                updateRank($candidateId, $eventId, $catId, $judgeId, $rank);
+            }
+
+        } else {
+            return false;
+        }
+
+    }
+
+    function updateCatRankFinal($eventId, $catId){
+
+        $statement=dbaselink()->prepare("SELECT * FROM tabs_results
+                                        Where 
+                                        tabs_cat_id = :tabs_cat_id AND
+                                        tabs_event_id = :tabs_event_id
+                                        Order By tabs_result_catRank ASC");
+        $statement->execute([
+            'tabs_cat_id' => $catId,
+            'tabs_event_id' => $eventId
+        ]);
+
+        if ($statement->rowCount() > 0) {
+
+            $scoreCounts = array();
+        
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($rows as $row) {
+
+                $rank = $row["tabs_result_catRank"];
+                
+                if (!isset($scoreCounts[$rank])) {
+                    $scoreCounts[$rank] = 1;
+                } else {
+                    $scoreCounts[$rank]++;
+                }
+            }
+        
+            reset($rows);
+            
+            foreach ($rows as $row) {
+
+                $candidateId = $row["tabs_can_id"];
+
+                $rank = $row["tabs_result_catRank"];
+                
+                $condition = countActiveJudge($eventId, $catId) + 1;
+
+                if ($scoreCounts[$rank] > $condition) {
+                    $rank += 0.5;
+                }
+                
+                // update here
+                updateCatRank($candidateId, $eventId, $catId, $rank);
+            }
+
+        } else {
+            return false;
+        }
+
     }
 
     function getCandidateResultByCategory($catId){

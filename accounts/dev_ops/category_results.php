@@ -45,6 +45,9 @@
                                 <div class="col-12 col-xl-4 no-print">
                                     <div class="justify-content-end d-flex">
                                         <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                                            <button class="btn btn-primary" type="button" id="generateRank" data-bs-toggle="modal" data-bs-target="#generate">
+                                                Generate Ranks
+                                            </button>
                                             <button class="btn btn-success" type="button" onclick="window.print()">
                                                 Print Result
                                             </button>
@@ -74,8 +77,8 @@
                                                     <th class="sortStyle p-2 text-center" title="<?= getJudgeName($judges['tabs_user_id']) ?>"><?= limitString(getJudgeName($judges['tabs_user_id']), 10) ?> <i class="ti-angle-down"></th>
                                                     <?php } ?>
                                                     <th class="sortStyle p-2 text-center">Total Rank<i class="ti-angle-down"></th>
-                                                    <th class="sortStyle p-2 text-center">Output Rank<i class="ti-angle-down"></th>
-                                                    <th class="sortStyle p-2 text-center hide-on-print">Rank<i class="ti-angle-down"></th>
+                                                    <th class="sortStyle p-2 text-center">Rank<i class="ti-angle-down"></th>
+                                                    <!-- <th class="sortStyle p-2 text-center hide-on-print">Rank<i class="ti-angle-down"></th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -104,7 +107,7 @@
                                                     <td class="p-2 text-center">
                                                         <?= getCandidateCatRank($catList['tabs_can_id'], $eventID, $redirect) ?>
                                                     </td>
-                                                    <td class="p-2 text-center hide-on-print">
+                                                    <!-- <td class="p-2 text-center hide-on-print">
                                                         <input 
                                                         type="number" 
                                                         class="form-control form-control-sm text-center border border-light" 
@@ -113,7 +116,7 @@
                                                         id="catRank_<?= $catList['tabs_can_id'] ?>" 
                                                         value="<?= getCandidateCatRank($catList['tabs_can_id'], $eventID, $redirect) ?>" 
                                                         onkeyup="updateCatRank(<?= $catList['tabs_can_id'] ?>, this.value)" autofocus>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -140,7 +143,7 @@
                                         <table class="table table-hover table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th class="p-2 text-center" colspan="<?= 3 + $criteriaCount; ?>"><?= getJudgeName($judge['tabs_user_id']); ?></th>
+                                                    <th class="p-2 text-center" colspan="<?= 4 + $criteriaCount; ?>"><?= getJudgeName($judge['tabs_user_id']); ?></th>
                                                 </tr>
                                                 <tr>
                                                     <th class="p-2 text-center"><?= $countCandidates."/".$candidateCount; ?></th>
@@ -184,14 +187,15 @@
                                                     <?php } ?>
                                                     <td class="p-2 text-center"><?= RealNumber($totalPercentage, 2); ?></td>
                                                     <td class="p-2 text-center">
-                                                        <input 
+                                                        <?= getCandidateRank($list['tabs_can_id'], $eventID, $redirect, $judge['tabs_user_id']) ?>
+                                                        <!-- <input 
                                                         type="number" 
                                                         class="form-control form-control-sm text-center border border-light" 
                                                         min="1" 
                                                         step="1" 
                                                         id="rank_<?= $list['tabs_can_id'] ?>" 
                                                         value="<?= getCandidateRank($list['tabs_can_id'], $eventID, $redirect, $judge['tabs_user_id']) ?>" 
-                                                        onkeyup="updateRank(<?= $list['tabs_can_id'] ?>, <?= $judge['tabs_user_id'] ?>, this.value)" autofocus>
+                                                        onkeyup="updateRank(<?= $list['tabs_can_id'] ?>, <?= $judge['tabs_user_id'] ?>, this.value)" autofocus> -->
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -209,6 +213,29 @@
                 <?php include '_footer.php'; ?>
 
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modals -->
+    <div class="modal fade" id="generate" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Generate Ranks </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data" action="categoryGenerateRank?rand=<?= my_rand_str(30) ?>&catId=<?= $redirect ?>" onsubmit="btnLoader(this.submit_generate_ranks)">
+                <div class="modal-body">
+                    <p>Are you sure you want to continue?</p>
+                    <input type="hidden" name="catId" value="<?= $redirect ?>" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="submit_generate_ranks" class="btn btn-primary btn-block">Generate</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>

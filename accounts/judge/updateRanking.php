@@ -35,33 +35,63 @@
             'can_id' => $score['tabs_can_id'],
             'cri_id' => $score['tabs_cri_id'],
             'judge_id' => $score['tabs_user_id'],
-            'total' => $score['tabs_result_score']
+            'score' => $score['tabs_result_score']
         );
     }
     
     usort($candidates, function($a, $b) {
-        return $b['total'] - $a['total'];
+        return $b['score'] - $a['score'];
     });
     
+    // ranking v1
+
+    // $rank = 1;
+    // $prevScore = null;
+    // foreach ($candidates as $candidate) {
+
+    //     $can_id = $candidate['can_id'];
+    //     $cri_id = $candidate['cri_id'];
+    //     $judge_id = $candidate['judge_id'];
+    //     $total = $candidate['total'];
+
+    //     if ($total != $prevScore) {
+    //         $rank = $rank;
+    //     }else{
+    //         $rank = $rank - 1;
+    //     }
+    
+    //     updateRank($can_id, $tabs_event_id, $catId, $judge_id, $rank);
+    
+    //     $rank++;
+    //     $prevScore = $total;
+    // }
+
+    //ranking v2 with .5
+
     $rank = 1;
-    $prevScore = null;
-    foreach ($candidates as $candidate) {
+    $previousScore = null;
+    $totalTied = 0;
+
+    foreach ($candidates as &$candidate) {
+
         $can_id = $candidate['can_id'];
         $cri_id = $candidate['cri_id'];
         $judge_id = $candidate['judge_id'];
-        $total = $candidate['total'];
 
-        if ($total != $prevScore) {
-            $rank = $rank;
-        }else{
-            $rank = $rank - 1;
+        if ($candidate['score'] != $previousScore) {
+            $rank += $totalTied;
+            $totalTied = 0;
         }
-    
+
         updateRank($can_id, $tabs_event_id, $catId, $judge_id, $rank);
-    
-        $rank++;
-        $prevScore = $total;
+
+        $candidate['rank'] = $rank;
+        $totalTied++;
+        $previousScore = $candidate['score'];
+        $ranks[] = $rank;
     }
+
+    updateRankFinal($tabs_event_id, $catId, $tabs_user_id);
 
     header("location: category?rand=" . my_rand_str(39) . "&cd=$catId&note=submit");
     

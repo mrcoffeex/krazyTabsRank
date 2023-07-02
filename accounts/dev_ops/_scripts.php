@@ -102,6 +102,12 @@
 		return true;  
 	}
 
+	function btnLoader(formObj){
+		formObj.disabled = true;
+		formObj.innerHTML = "processing ...";
+		return true;  
+	}
+
 	// events
 	$("#tabsName").focus();
 

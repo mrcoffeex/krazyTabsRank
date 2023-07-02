@@ -32,13 +32,13 @@
 
         groups.push({
           'values': [tableRows[i]],
-          'key': $(td).text()
+          'key': parseFloat($(td).text()) // Parse as float for numeric comparison
         });
       }
       return groups;
     },
     comparator: function(group1, group2) {
-      return group1.key.localeCompare(group2.key);
+      return group1.key - group2.key; // Numeric comparison
     }
   };
 

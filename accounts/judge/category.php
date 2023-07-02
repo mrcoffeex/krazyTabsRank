@@ -75,7 +75,7 @@
                                     </h2>
                                     <form action="updateRanking?catId=<?= $redirect ?>" method="post" enctype="multipart/form-data" onsubmit="btnLoader(this.generateRank)">
                                     <div class="table-sorter-wrapper col-lg-12 table-responsive">
-                                        <table class="table table-hover table-bordered border-dark" id="sortable-table-1">
+                                        <table class="table table-hover table-bordered border-dark" id="sortable-table-2">
                                             <thead>
                                                 <tr class="table-dark">
                                                     <th class="sortStyle text-center"># <i class="ti-angle-down"></i></th>
@@ -126,9 +126,10 @@
                                                             max="<?= $criRow['tabs_cri_score_max'] ?>" 
                                                             step="0.01" 
                                                             name="result_<?= $candidate['tabs_can_id'] ?>" 
-                                                            id="result_<?= $criRow['tabs_cri_id'] ?>"
+                                                            id="result_<?= $criRow['tabs_cri_id'] . $candidate['tabs_can_id'] ?>"
                                                             value="<?= getCandidateResultByCriteria($criRow['tabs_cri_id'], $redirect, $candidate['tabs_can_id'], $tabs_user_id) ?>" 
                                                             style="line-heigth: 3; font-size: 33px;" 
+                                                            onkeyup="updateScore(<?= $candidate['tabs_can_id'] ?>, <?= $criRow['tabs_cri_id'] ?>, this.value)" 
                                                             autofocus required>
 
                                                             <input type="hidden" name="criId_<?= $candidate['tabs_can_id'] ?>" value="<?= $criRow['tabs_cri_id'] ?>" required>
@@ -174,12 +175,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="table-sorter-wrapper col-lg-12 table-responsive">
-                        <table class="table table-hover table-bordered border-dark" id="sortable-table-1">
+                        <table class="table table-hover table-bordered border-dark">
                             <thead>
                                 <tr class="table-dark">
-                                    <th class="sortStyle text-center"># <i class="ti-angle-down"></i></th>
-                                    <th class="sortStyle text-center">Candidate <i class="ti-angle-down"></i></th>
-                                    <th class="sortStyle text-center">Rank <i class="ti-angle-down"></i></th>
+                                    <th class="sortStyle text-center">#</th>
+                                    <th class="sortStyle text-center">Candidate</th>
+                                    <th class="sortStyle text-center">Rank</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -265,6 +266,7 @@
                         } else if (data == 1) {
 
                             toastr.error('error');
+                            $("#result_" + criId + canId).val("");
 
                         } else if (data == 2) {
 
@@ -273,6 +275,7 @@
                         } else if (data == 3) {
 
                             toastr.error('Exceeding max input');
+                            $("#result_" + criId + canId).val("");
 
                         } else if (data == 4) {
 
@@ -281,6 +284,7 @@
                         } else if (data == 5) {
 
                             toastr.error('Please put minimum input');
+                            // $("#result_" + criId + canId).val("");
 
                         } else {
 
