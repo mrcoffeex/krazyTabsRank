@@ -103,7 +103,7 @@
                                                 <tr>
                                                     <td class="text-center"><h2><?= $candidate['tabs_can_number'] ?></h2></td>
                                                     <td class="text-center text-bold">
-                                                        <h3><?= $candidate['tabs_can_name'] ?></h3>
+                                                        <h3 class="text-uppercase"><?= $candidate['tabs_can_name'] ?></h3>
                                                         <br><br>
                                                         <img src="<?= previewImage($candidate['tabs_can_image'], '../../images/default_image.jpg', '../../uploads/') ?>" class="" alt="image">
                                                     </td>
@@ -147,7 +147,7 @@
                                     <div class="row justify-content-center mt-3">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <button type="submit" id="generateRank" class="btn btn-primary btn-lg btn-block">Submit and Generate Rank</button>
+                                                <button type="submit" id="generateRank" class="btn btn-primary btn-lg btn-block text-uppercase">Submit and Generate Rank</button>
                                             </div>
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@
                                 ?>
                                 <tr>
                                     <td class="text-center"><?= getCandidateNumber($rank['tabs_can_id']) ?></td>
-                                    <td class="text-center text-bold"><?= getCandidateName($rank['tabs_can_id']) ?></td>
+                                    <td class="text-center text-bold"><?= limitString(getCandidateName($rank['tabs_can_id']), 25) ?></td>
                                     <td class="text-center text-bold"><?= $rank['tabs_result_rank'] ?></td>
                                     
                                 </tr>

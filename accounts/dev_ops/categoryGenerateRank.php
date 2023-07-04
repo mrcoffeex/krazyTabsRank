@@ -21,8 +21,15 @@
 
         }
 
+        // usort($candidates, function($a, $b) {
+        //     return $a['score'] - $b['score'];
+        // });
+
         usort($candidates, function($a, $b) {
-            return $a['score'] - $b['score'];
+            if ($a['score'] == $b['score']) {
+                return 0;
+            }
+            return ($a['score'] < $b['score']) ? -1 : 1;
         });
 
         $rank = 1;

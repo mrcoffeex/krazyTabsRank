@@ -155,7 +155,7 @@
                                                     ?>
                                                     <th class="p-2 text-center" title="<?= $criRow['tabs_cri_title'] ?>">
                                                         <?= limitString($criRow['tabs_cri_title'], 10) ?> 
-                                                        <span class="text-primary"><?= $criRow['tabs_cri_percentage']."%" ?></span>
+                                                        <!-- <span class="text-primary"><?= $criRow['tabs_cri_percentage']."%" ?></span> -->
                                                     </th>
                                                     <?php } ?>
                                                     <th class="p-2 text-center">Total %</th>
@@ -182,7 +182,7 @@
                                                     ?>
                                                     <td class="p-2 text-center">
                                                         <?= $scores; ?>
-                                                        <span class="float-end">( <?= RealNumber(getCriteriaPercentage($scores, $criRow['tabs_cri_percentage'], $criRow['tabs_cri_score_max']), 2)."%" ?> )</span>
+                                                        <!-- <span class="float-end">( <?= RealNumber(getCriteriaPercentage($scores, $criRow['tabs_cri_percentage'], $criRow['tabs_cri_score_max']), 2)."%" ?> )</span> -->
                                                     </td>
                                                     <?php } ?>
                                                     <td class="p-2 text-center"><?= RealNumber($totalPercentage, 2); ?></td>

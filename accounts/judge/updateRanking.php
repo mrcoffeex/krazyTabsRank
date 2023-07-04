@@ -40,7 +40,10 @@
     }
     
     usort($candidates, function($a, $b) {
-        return $b['score'] - $a['score'];
+        if ($b['score'] == $a['score']) {
+            return 0;
+        }
+        return ($b['score'] < $a['score']) ? -1 : 1;
     });
     
     // ranking v1
