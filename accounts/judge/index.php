@@ -49,11 +49,33 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row mb-4">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row" id="load_categories"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h4 class="text-uppercase card-title"><i class="ti-user"></i> our team</h4>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <img src="../../images/um_logo.png" class="img-fluid" alt="">
+                                                    <h5 class="text-center text-uppercase">UM DIGOS COLLEGE</h5>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <img src="../../images/dtp_logo.png" class="img-fluid" alt="">
+                                                    <h5 class="text-center text-uppercase">Department of Technical Programs</h5>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

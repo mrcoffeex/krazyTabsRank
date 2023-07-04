@@ -71,6 +71,8 @@
                                                         <span class="text-primary">krazyappsph@gmail.com</span>&nbsp;
                                                         Cel #:&nbsp;
                                                         <span class="text-primary">0912 161 0673</span>&nbsp;
+                                                        Portfolio #:&nbsp;
+                                                        <span class="text-primary">https://portfolio.krazyappsph.tech/</span>&nbsp;
                                                     </p>
                                                 </div>
                                             </div>

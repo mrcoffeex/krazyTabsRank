@@ -104,8 +104,14 @@
                                                     <td class="text-center"><h2><?= $candidate['tabs_can_number'] ?></h2></td>
                                                     <td class="text-center text-bold">
                                                         <h3 class="text-uppercase"><?= $candidate['tabs_can_name'] ?></h3>
+                                                        <?php  
+                                                            if (empty($candidate['tabs_can_image']) || $candidate['tabs_can_image'] == "empty") {
+                                                                //nothing
+                                                            } else {
+                                                        ?>
                                                         <br><br>
                                                         <img src="<?= previewImage($candidate['tabs_can_image'], '../../images/default_image.jpg', '../../uploads/') ?>" class="" alt="image">
+                                                        <?php } ?>
                                                     </td>
 
                                                     <?php  

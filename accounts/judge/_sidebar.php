@@ -12,5 +12,11 @@
                 <span class="menu-title">About <span class="text-primary">KrazyApps</span></span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="team">
+                <i class="ti-user menu-icon"></i>
+                <span class="menu-title">UM Tabulation Team</span>
+            </a>
+        </li>
     </ul>
 </nav>
