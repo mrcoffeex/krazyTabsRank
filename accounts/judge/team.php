@@ -46,13 +46,15 @@
                                                     </div>
                                                     
                                                     <p class="mb-4" style="font-size: 15px; text-align: justify;">
-                                                    We create/provides solutions to companies and individuals in a way of apps/softwares. Since 2017 we created several apps and helped a few companies to improved their transactions when it comes to efficiency and accuracy. Aside from the great performance and flexibility of our services. We offer Krazy affordable rates in the market.
+                                                    The <span class="text-primary">UM Tabulation Team</span> is a highly skilled group dedicated to leveraging the power of data. Specializing in tabulation, we transform raw information into meaningful insights. With expertise in statistical analysis, data visualization, and database management, we excel at turning complex data into actionable knowledge. Collaborating closely with clients, we tailor our services to meet their specific needs, delivering accurate and timely results. Unlock the potential of your data with the UM Tabulation Team and experience the difference that meticulous analysis and insightful reporting can make.
+                                                    <br><br>
+                                                    At the core of our work lies a passion for data and a commitment to excellence. We believe that effective data analysis is essential for informed decision-making. By harnessing advanced tools and techniques, we provide valuable reports, charts, and graphs that enable businesses, organizations, and researchers to make data-driven choices. Our team's attention to detail and ability to handle large volumes of information ensure reliable and precise results. Experience the power of data with the UM Tabulation Team and empower your organization with actionable insights.
                                                     </p>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <p style="font-weight: bold;">
                                                         Email:&nbsp;
-                                                        <span class="text-primary">krazyappsph@gmail.com</span>&nbsp;
+                                                        <span class="text-primary">jmdelima@umindanao.edu.ph</span>&nbsp;
                                                         Cel #:&nbsp;
                                                         <span class="text-primary">0912 161 0673</span>&nbsp;
                                                     </p>

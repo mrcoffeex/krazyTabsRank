@@ -75,6 +75,13 @@
                                                     <img src="../../images/dtp_logo.png" class="img-fluid" alt="">
                                                     <h5 class="text-center text-uppercase">Department of Technical Programs</h5>
                                                 </div>
+                                                <div class="col-md-8">
+                                                    <p class="mb-4" style="font-size: 17px; text-align: justify;">
+                                                        The <span class="text-primary">UM Tabulation Team</span> is a highly skilled group dedicated to leveraging the power of data. Specializing in tabulation, we transform raw information into meaningful insights. With expertise in statistical analysis, data visualization, and database management, we excel at turning complex data into actionable knowledge. Collaborating closely with clients, we tailor our services to meet their specific needs, delivering accurate and timely results. Unlock the potential of your data with the UM Tabulation Team and experience the difference that meticulous analysis and insightful reporting can make.
+                                                        <br><br>
+                                                        At the core of our work lies a passion for data and a commitment to excellence. We believe that effective data analysis is essential for informed decision-making. By harnessing advanced tools and techniques, we provide valuable reports, charts, and graphs that enable businesses, organizations, and researchers to make data-driven choices. Our team's attention to detail and ability to handle large volumes of information ensure reliable and precise results. Experience the power of data with the UM Tabulation Team and empower your organization with actionable insights.
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
