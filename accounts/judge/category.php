@@ -156,6 +156,9 @@
                                                 <button type="submit" id="generateRank" class="btn btn-primary btn-lg btn-block text-uppercase">Submit and Generate Rank</button>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <p class="text-center">Note: all score are autosaved but be sure to click the <span class="text-primary">SUBMIT AND GENERATE RANK</span> to identify your rankings.</p>
+                                        </div>
                                     </div>
                                     </form>
                                 </div>

@@ -45,7 +45,6 @@
                                                     <th class="text-center">Criteria</th>
                                                     <th>Title</th>
                                                     <th>Event</th>
-                                                    <th>%</th>
                                                     <th class="text-center">Switch</th>
                                                     <th class="text-center">Reset</th>
                                                     <th class="text-center">Edit</th>
@@ -87,7 +86,6 @@
                                                     </td>
                                                     <td><?= $category['tabs_cat_title'] ?></td>
                                                     <td><?= getEventTitle($category['tabs_event_id']) ?></td>
-                                                    <td><?= $category['tabs_cat_percentage']." %" ?></td>
                                                     <td class="text-center">
                                                         <div class="form-switch">
                                                             <input 
@@ -180,10 +178,6 @@
                                                                     <label>Title</label>
                                                                     <input type="text" class="form-control" name="cat_title" value="<?= $category['tabs_cat_title'] ?>" autofocus required>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label>Overall Percentage %</label>
-                                                                    <input type="number" class="form-control" name="cat_percentage" min="0" step="0.01" value="<?= $category['tabs_cat_percentage'] ?>" required>
-                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="submit" name="submit_update_category" class="btn btn-info">Update</button>
@@ -248,12 +242,6 @@
 
                                                 <?php } ?>
 
-                                                <tr>
-                                                    <td class="text-center <?= $textColor ?>" colspan="4">Total Percentage</td>
-                                                    <td class="<?= $textColor ?>"><?= $total ?> %</td>
-                                                    <td colspan="4"></td>
-                                                </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -284,10 +272,6 @@
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" class="form-control" name="cat_title" autofocus required>
-                    </div>
-                    <div class="form-group">
-                        <label>Overall Percentage %</label>
-                        <input type="number" class="form-control" name="cat_percentage" min="0" step="0.01" required>
                     </div>
                 </div>
                 <div class="modal-footer">

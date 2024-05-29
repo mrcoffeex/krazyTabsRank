@@ -32,6 +32,11 @@
                                     <form method="post" enctype="multipart/form-data" action="event_create" onsubmit="validateCreateEvent(this)">
                                         <div class="modal-body">
                                             <div class="form-group">
+                                                <a href="events">
+                                                    <button type="button" class="btn btn-dark btn-sm">go back</button>
+                                                </a>
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Title</label>
                                                 <input type="text" class="form-control" name="event_title" maxlength="255" autofocus required>
                                             </div>

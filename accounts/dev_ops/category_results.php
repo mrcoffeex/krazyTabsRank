@@ -76,9 +76,8 @@
                                                     ?>
                                                     <th class="sortStyle p-2 text-center" title="<?= getJudgeName($judges['tabs_user_id']) ?>"><?= limitString(getJudgeName($judges['tabs_user_id']), 10) ?> <i class="ti-angle-down"></th>
                                                     <?php } ?>
-                                                    <th class="sortStyle p-2 text-center">Total Rank<i class="ti-angle-down"></th>
+                                                    <th class="sortStyle p-2 text-center">Total Rank Points<i class="ti-angle-down"></th>
                                                     <th class="sortStyle p-2 text-center">Rank<i class="ti-angle-down"></th>
-                                                    <!-- <th class="sortStyle p-2 text-center hide-on-print">Rank<i class="ti-angle-down"></th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -107,16 +106,6 @@
                                                     <td class="p-2 text-center">
                                                         <?= getCandidateCatRank($catList['tabs_can_id'], $eventID, $redirect) ?>
                                                     </td>
-                                                    <!-- <td class="p-2 text-center hide-on-print">
-                                                        <input 
-                                                        type="number" 
-                                                        class="form-control form-control-sm text-center border border-light" 
-                                                        min="1" 
-                                                        step="1" 
-                                                        id="catRank_<?= $catList['tabs_can_id'] ?>" 
-                                                        value="<?= getCandidateCatRank($catList['tabs_can_id'], $eventID, $redirect) ?>" 
-                                                        onkeyup="updateCatRank(<?= $catList['tabs_can_id'] ?>, this.value)" autofocus>
-                                                    </td> -->
                                                 </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -154,11 +143,9 @@
                                                         while ($criRow=$getCriRow->fetch(PDO::FETCH_ASSOC)) {
                                                     ?>
                                                     <th class="p-2 text-center" title="<?= $criRow['tabs_cri_title'] ?>">
-                                                        <?= limitString($criRow['tabs_cri_title'], 10) ?> 
-                                                        <!-- <span class="text-primary"><?= $criRow['tabs_cri_percentage']."%" ?></span> -->
+                                                        <?= limitString($criRow['tabs_cri_title'], 10) ?>
                                                     </th>
                                                     <?php } ?>
-                                                    <th class="p-2 text-center">Total %</th>
                                                     <th class="p-2 text-center">Rank</th>
                                                 </tr>
                                             </thead>
@@ -182,20 +169,10 @@
                                                     ?>
                                                     <td class="p-2 text-center">
                                                         <?= $scores; ?>
-                                                        <!-- <span class="float-end">( <?= RealNumber(getCriteriaPercentage($scores, $criRow['tabs_cri_percentage'], $criRow['tabs_cri_score_max']), 2)."%" ?> )</span> -->
                                                     </td>
                                                     <?php } ?>
-                                                    <td class="p-2 text-center"><?= RealNumber($totalPercentage, 2); ?></td>
                                                     <td class="p-2 text-center">
                                                         <?= getCandidateRank($list['tabs_can_id'], $eventID, $redirect, $judge['tabs_user_id']) ?>
-                                                        <!-- <input 
-                                                        type="number" 
-                                                        class="form-control form-control-sm text-center border border-light" 
-                                                        min="1" 
-                                                        step="1" 
-                                                        id="rank_<?= $list['tabs_can_id'] ?>" 
-                                                        value="<?= getCandidateRank($list['tabs_can_id'], $eventID, $redirect, $judge['tabs_user_id']) ?>" 
-                                                        onkeyup="updateRank(<?= $list['tabs_can_id'] ?>, <?= $judge['tabs_user_id'] ?>, this.value)" autofocus> -->
                                                     </td>
                                                 </tr>
                                                 <?php } ?>

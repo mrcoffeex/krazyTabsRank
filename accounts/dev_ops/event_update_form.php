@@ -47,6 +47,11 @@
                                         action="event_update?rand=<?= my_rand_str(30) ?>&eventId=<?= $eventId ?>">
                                         <div class="modal-body">
                                             <div class="form-group">
+                                                <a href="events">
+                                                    <button type="button" class="btn btn-dark btn-sm">go back</button>
+                                                </a>
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Title</label>
                                                 <input type="text" class="form-control" name="event_title" maxlength="255" value="<?= $event['tabs_event_title'] ?>" autofocus required>
                                             </div>

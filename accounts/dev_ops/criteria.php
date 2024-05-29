@@ -37,7 +37,6 @@
                                                     <th>Title</th>
                                                     <th>Description</th>
                                                     <th>Min-Max</th>
-                                                    <th class="text-center">Percentage %</th>
                                                     <th class="text-center">Edit</th>
                                                     <th class="text-center">Delete</th>
                                                 </tr>
@@ -56,10 +55,9 @@
                                                         }
                                                 ?>
                                                 <tr>
-                                                    <td><?= $criteria['tabs_cri_title'] ?></td>
+                                                    <td title="<?= $criteria['tabs_cri_title'] ?>"><?= limitString($criteria['tabs_cri_title'], 50) ?></td>
                                                     <td><?= $criteria['tabs_cri_desc'] ?></td>
                                                     <td><?= $criteria['tabs_cri_score_min']." - ".$criteria['tabs_cri_score_max'] ?></td>
-                                                    <td class="text-center"><?= $criteria['tabs_cri_percentage']."%" ?></td>
                                                     <td class="text-center">
                                                         <button 
                                                             type="button" 
@@ -121,12 +119,6 @@
                                                                             <input type="number" class="form-control" name="cri_max" min="0" step="0.01" value="<?= $criteria['tabs_cri_score_max'] ?>" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="form-group">
-                                                                            <label>Percentage %</label>
-                                                                            <input type="number" class="form-control" name="cri_percentage" min="0" step="0.01" value="<?= $criteria['tabs_cri_percentage'] ?>" required>
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -170,12 +162,6 @@
                                                 </div>
 
                                                 <?php } ?>
-
-                                                <tr>
-                                                    <td class="text-center <?= $textColor; ?>" colspan="3">Total Percentage</td>
-                                                    <td class="text-center <?= $textColor; ?>"><?= $totalPercentage."%" ?></td>
-                                                    <td colspan="2"></td>
-                                                </tr>
 
                                             </tbody>
                                         </table>
@@ -227,12 +213,6 @@
                             <div class="form-group">
                                 <label>Max</label>
                                 <input type="number" class="form-control" name="cri_max" min="0" step="0.01" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Percentage %</label>
-                                <input type="number" class="form-control" name="cri_percentage" min="0" step="0.01" required>
                             </div>
                         </div>
                     </div>

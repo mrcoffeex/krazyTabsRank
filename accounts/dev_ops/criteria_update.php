@@ -10,9 +10,8 @@
         $cri_desc = clean_string($_POST['cri_desc']);
         $cri_min = clean_float($_POST['cri_min']);
         $cri_max = clean_float($_POST['cri_max']);
-        $cri_percentage = clean_float($_POST['cri_percentage']);
 
-        $update_data = updateCriteria($cri_title, $cri_desc, $cri_min, $cri_max, $cri_percentage, $redirect);
+        $update_data = updateCriteria($cri_title, $cri_desc, $cri_min, $cri_max, 0, $redirect);
 
         if ($update_data == true) {
             header("location: criteria?rand=".my_rand_str(30)."&cd=$catId&note=cri_updated");
