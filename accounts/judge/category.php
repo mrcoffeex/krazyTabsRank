@@ -53,11 +53,14 @@
                         <div class="col-md-12 mb-3">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <h3>
-                                    <span class="text-bold"><?= $criteria['tabs_cri_title'] ?></span><br>
-                                    <?= $criteria['tabs_cri_desc'] ?><br>
-                                    Scoring: <span class="text-primary"><?= $criteria['tabs_cri_score_min'] . " - " . $criteria['tabs_cri_score_max'] ?></span>
+                                    <h3 class="text-bold mb-3">
+                                        <?= $criteria['tabs_cri_title'] ?>
                                     </h3>
+                                    <h5>
+                                        <?= $criteria['tabs_cri_desc'] ?>
+                                        <br>
+                                        Scoring: <span class="text-primary"><?= $criteria['tabs_cri_score_min'] . " - " . $criteria['tabs_cri_score_max'] ?></span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -68,8 +71,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h2 class="mb-4">
-                                        <span class="text-primary"><?= getCategoryTitle($redirect) ?></span> Category
+                                        <span class="text-primary"><?= getCategoryTitle($redirect) ?></span> Category <span style="font-size: 17px;">press TAB for next and SHIFT+TAB for previous</span>
                                         <span class="float-end">
+                                            <input type="checkbox" name="showHideImage" id="showHideImage" checked>
+                                            <label for="showHideImage" style="font-size: 17px;">Show/Hide Image</label>
+
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showRanks">Show Ranks</button>
                                         </span>
                                     </h2>
@@ -85,8 +91,8 @@
                                                         $getCriHead=selectCriteria($redirect);
                                                         while ($criHead=$getCriHead->fetch(PDO::FETCH_ASSOC)) {
                                                     ?>
-                                                    <th class="sortStyle text-center">
-                                                        <?= $criHead['tabs_cri_title'] ?> 
+                                                    <th class="sortStyle text-center" title="<?= $criHead['tabs_cri_title'] ?>">
+                                                        <?= limitString($criHead['tabs_cri_title'], 30) ?> 
                                                         <span class="text-warning"><?= $criHead['tabs_cri_score_min']." - ".$criHead['tabs_cri_score_max'] ?></span>
                                                         <i class="ti-angle-down"></i>
                                                     </th>
@@ -110,7 +116,9 @@
                                                             } else {
                                                         ?>
                                                         <br><br>
-                                                        <img src="<?= previewImage($candidate['tabs_can_image'], '../../images/default_image.jpg', '../../uploads/') ?>" class="" alt="image">
+                                                        <span class="canImages">
+                                                            <img src="<?= previewImage($candidate['tabs_can_image'], '../../images/default_image.jpg', '../../uploads/') ?>" alt="image">
+                                                        </span>
                                                         <?php } ?>
                                                     </td>
 
@@ -308,6 +316,21 @@
             });
             
         }
+
+        $(document).ready(function(){
+
+            $('#showHideImage').change(function () {
+                if ($(this).prop("checked")) {
+                    $('.canImages').removeClass("d-none");
+                    console.log("checked");
+                }else{
+                    $('.canImages').addClass("d-none");
+                    console.log("unchecked");
+                }
+                console.log("changed");
+            });
+
+        });
 
     </script>
 
