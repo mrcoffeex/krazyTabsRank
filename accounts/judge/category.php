@@ -159,7 +159,14 @@
                                         </table>
                                     </div>
                                     <div class="row justify-content-center mt-3">
-                                        <div class="col-md-6">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <a href="./" class="text-decoration-none">
+                                                    <button type="button" id="generateRank" class="btn btn-danger btn-lg btn-block text-white text-uppercase">Close</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
                                             <div class="form-group">
                                                 <button type="submit" id="generateRank" class="btn btn-primary btn-lg btn-block text-uppercase">Submit and Generate Rank</button>
                                             </div>
@@ -300,7 +307,7 @@
 
                         } else if (data == 5) {
 
-                            toastr.error('Please put minimum input');
+                            // toastr.error('Please put minimum input');
                             // $("#result_" + criId + canId).val("");
 
                         } else {

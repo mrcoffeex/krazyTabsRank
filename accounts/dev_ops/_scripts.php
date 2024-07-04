@@ -176,6 +176,23 @@
 	});
 
 	$(document).ready(function () {
+
+	function load_judge_status() {
+		$.ajax({
+			type: "GET",
+			url: "auto_judge_status.php",
+			dataType: "html",              
+			success: function (response) {
+				$("#loadJudges").html(response);
+				setTimeout(load_judge_status, 1000)
+			}
+		});
+	}
+
+	load_judge_status();
+	});
+
+	$(document).ready(function () {
 		
 		$('#selectAllJudges').click(function(){
 

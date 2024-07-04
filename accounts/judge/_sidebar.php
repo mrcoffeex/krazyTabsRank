@@ -1,3 +1,10 @@
+<?php 
+
+    $currentPage = str_replace('.php', '', basename($_SERVER['PHP_SELF']));
+    updateUserCurrent($tabs_user_id, $currentPage);
+
+?>
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">

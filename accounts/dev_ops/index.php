@@ -60,9 +60,16 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row justify-content-center mb-4">
+                                <div class="col-md-12 text-center mb-2">
+                                    <p class="fs-6 mb-2"><i class="ti-target"></i> Judges Status</p>
+                                </div>
+                                <div class="col-md-12 text-center" id="loadJudges">
+                                </div>
+                            </div>
 
-                                <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
                                     <p class="fs-6 mb-2"><i class="ti-star"></i> Highlighted Events</p>
                                 </div>
 

@@ -502,6 +502,28 @@
 
     }
 
+    function updateUserCurrent($userId, $currentPage){
+
+        $statement=dbaselink()->prepare("UPDATE tabs_users
+            SET
+            
+            tabs_user_current = :tabs_user_current,
+            tabs_user_updated = NOW()
+            Where
+            tabs_user_id = :tabs_user_id");
+        $statement->execute([
+            'tabs_user_current' => $currentPage,
+            'tabs_user_id' => $userId
+        ]);
+
+        if ($statement) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     function selectUsers(){
 
         $statement=dbaselink()->prepare("SELECT * From tabs_users 
@@ -998,7 +1020,7 @@
             ]);
 
             if ($statement) {
-                return true;
+                return "deleted";
             }else{
                 return false;
             }

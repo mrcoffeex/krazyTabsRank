@@ -36,6 +36,7 @@
                                             <button type="button" class="btn btn-dark btn-sm">go back</button>
                                         </a>
                                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-can"><i class="ti-plus"></i> Create Candidate</button>
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#generate-can"><i class="ti-plus"></i> Generate Candidates</button>
 
                                         <button 
                                         tpye="button" 
@@ -246,6 +247,32 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="submit_create_can" class="btn btn-success">Create</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- modals -->
+    <div class="modal fade" id="generate-can" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel"><i class="ti-plus"></i> Generate Candidate</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data" action="candidate_generate?eventId=<?= $eventId ?>" onsubmit="validateCreateCandidate(this)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Number of Candidates</label>
+                        <input type="number" class="form-control text-center" name="candidates" min="1" step="1" max="50" autofocus required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="submit_create_can" class="btn btn-warning">Generate</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>
                 </form>

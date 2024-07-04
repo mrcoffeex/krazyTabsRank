@@ -49,7 +49,7 @@
                                                 <input type="password" name="tabs_log_password" id="tabs_log_password" class="form-control form-control-lg border-left-0" placeholder="Password" required>                        
                                             </div>
                                         </div>
-                                        <div class="my-2 d-flex justify-content-between align-items-center">
+                                        <!-- <div class="my-2 d-flex justify-content-between align-items-center">
                                             <div class="form-check form-check-primary">
                                                 <label class="form-check-label text-muted">
                                                 <input type="checkbox" class="form-check-input">
@@ -57,7 +57,7 @@
                                                 </label>
                                             </div>
                                             <a href="#" class="auth-link text-black">Forgot password?</a>
-                                        </div>
+                                        </div> -->
                                         <div class="my-3">
                                             <button type="submit" name="tabs_login" id="tabs_login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
                                         </div>

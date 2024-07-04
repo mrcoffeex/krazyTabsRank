@@ -98,13 +98,13 @@
                                                                     <div class="col-lg-12">
                                                                         <div class="form-group">
                                                                             <label>Title</label>
-                                                                            <input type="text" class="form-control" name="cri_title" value="<?= $criteria['tabs_cri_title'] ?>" autofocus required>
+                                                                            <textarea class="form-control" name="cri_title" rows="5" autofocus required><?= $criteria['tabs_cri_title'] ?></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-12">
                                                                         <div class="form-group">
                                                                             <label>Description</label>
-                                                                            <textarea class="form-control" name="cri_desc" rows="3"><?= $criteria['tabs_cri_desc'] ?></textarea>
+                                                                            <input type="text" class="form-control" name="cri_desc" value="<?= $criteria['tabs_cri_desc'] ?>"  >
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-6">
@@ -194,13 +194,13 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Title</label>
-                                <input type="text" class="form-control" name="cri_title" autofocus required>
+                                <textarea class="form-control" name="cri_title" rows="5" autofocus required></textarea>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="cri_desc" rows="3"></textarea>
+                                <input type="text" class="form-control" name="cri_desc">
                             </div>
                         </div>
                         <div class="col-lg-6">
